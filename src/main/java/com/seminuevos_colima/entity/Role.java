@@ -2,9 +2,9 @@ package com.seminuevos_colima.entity;
 
 public enum Role {
 
-    SELLER("Seller"),
-    BUYER("Buyer"),
-    ADMIN("Administrator");
+    VENDEDOR("Vendedor"),
+    COMPRADOR("Comprador"),
+    ADMINISTRADOR("Administrador");
 
     private final String displayName;
 
@@ -16,4 +16,9 @@ public enum Role {
         return displayName;
     }
 
+    // Método auxiliar para verificar si el rol es ADMINISTRADOR
+    public boolean isAdmin() {
+        return this == ADMINISTRADOR;
+    }
 }
+

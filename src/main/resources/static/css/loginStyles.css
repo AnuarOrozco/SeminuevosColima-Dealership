@@ -1,0 +1,51 @@
+        /* Colores personalizados */
+        :root {
+            --color-principal: #DC5341;
+            --color-linea: #d3d3d3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container-login {
+            max-width: 400px;
+            margin: 5% auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .btn-principal {
+            background-color: var(--color-principal);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-principal:hover {
+            background-color: #fa6551;
+        }
+
+        a {
+            color: var(--color-principal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }

@@ -1,0 +1,88 @@
+        /* Colores personalizados */
+        :root {
+            --color-principal: #DC5341; /* Rojo llamativo */
+            --color-linea: #d3d3d3; /* Gris claro para líneas */
+        }
+    
+        /* General */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Fondo general claro */
+        }
+    
+        header, footer {
+            background-color: #fff; /* Fondos blancos */
+        }
+
+        .logo {
+    height: 130px; /* Ajusta la altura a lo que necesites */
+    max-height: 100px; /* Altura máxima para evitar que crezca demasiado */
+    width: auto; /* Mantén el aspecto proporcional */
+}
+    
+        .linea {
+            border-bottom: 1px solid var(--color-linea); /* Línea gris */
+        }
+    
+        /* Botones */
+        .btn-principal {
+            background-color: var(--color-principal);
+            color: #fff;
+            border: none;
+        }
+    
+        .btn-principal:hover {
+            background-color: #fa6551; /* Un poco más oscuro al pasar el mouse */
+            transform: scale(1.05); /* Animación al pasar el mouse */
+            transition: transform 0.3s ease-in-out;
+        }
+    
+        /* Opciones del menú con animación de subrayado */
+        nav a {
+            position: relative;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 5px;
+            transition: color 0.3s ease;
+        }
+    
+        nav a:hover {
+            color: #fa6551;
+        }
+    
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* Debajo del texto */
+            width: 0;
+            height: 2px;
+            background-color: var(--color-principal);
+            transition: width 0.3s ease-in-out;
+        }
+    
+        nav a:hover::after {
+            width: 100%; /* Se expande al ancho del texto */
+        }
+    
+        /* Minimalismo en cards */
+        .card {
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .card:hover {
+            transform: translateY(-5px); /* Elevar ligeramente al pasar el mouse */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+        }
+    
+        footer p, footer a {
+            font-size: 0.85rem;
+            color: #555;
+        }
+    
+        footer a:hover {
+            color: var(--color-principal);
+        }

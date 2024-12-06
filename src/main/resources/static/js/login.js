@@ -1,12 +1,14 @@
-// Configuración del listener para el formulario
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
+    const messageContainer = document.createElement("div"); // Contenedor para mensajes
+    messageContainer.id = "message-container";
+    form.parentNode.insertBefore(messageContainer, form); // Colocar antes del formulario
 
     form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+        event.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
 
         try {
             const response = await fetch("/api/auth/login", {
@@ -18,19 +20,29 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                // Lógica en caso de login exitoso
-                alert("¡Inicio de sesión exitoso!");
-                window.location.href = "/dashboard"; // Redirige al dashboard o página principal
+                displayMessage("¡Inicio de sesión exitoso! Redirigiendo...", "success");
+                setTimeout(() => {
+                    window.location.href = "/dashboard"; // Redirige tras 2 segundos
+                }, 2000);
             } else {
-                // Manejo de errores del backend
                 const errorData = await response.json();
-                alert(`Error: ${errorData.message || "No se pudo iniciar sesión"}`);
+                displayMessage(errorData.message || "No se pudo iniciar sesión. Verifica tus credenciales.", "danger");
             }
         } catch (error) {
-            // Manejo de errores de red u otros problemas
             console.error("Error al intentar iniciar sesión:", error);
-            alert("Hubo un problema con el servidor. Inténtalo más tarde.");
+            displayMessage("Hubo un problema con el servidor. Inténtalo más tarde.", "danger");
         }
     });
+
+    // Función para mostrar mensajes dinámicos
+    function displayMessage(message, type) {
+        messageContainer.innerHTML = `
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        `;
+    }
 });

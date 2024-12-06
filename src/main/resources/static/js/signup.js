@@ -1,7 +1,8 @@
-// signup.js
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
+    const messageContainer = document.createElement("div"); // Contenedor para mensajes
+    messageContainer.id = "message-container";
+    form.parentNode.insertBefore(messageContainer, form); // Lo colocamos antes del formulario
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -11,8 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById("password").value.trim();
         const confirmPassword = document.getElementById("confirm-password").value.trim();
 
+        // Validación básica de contraseñas
         if (password !== confirmPassword) {
-            alert("Las contraseñas no coinciden");
+            displayMessage("Las contraseñas no coinciden", "danger");
             return;
         }
 
@@ -32,15 +34,29 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                alert("Registro exitoso. Ahora puedes iniciar sesión.");
-                window.location.href = "login.html";
+                displayMessage("Registro exitoso. Ahora puedes iniciar sesión.", "success");
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 3000); // Redirección tras 3 segundos
             } else {
                 const errorData = await response.json();
-                alert(`Error: ${errorData.message || "Ocurrió un problema en el registro"}`);
+                displayMessage(errorData.message || "Ocurrió un problema en el registro", "danger");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Error al conectar con el servidor.");
+            displayMessage("Error al conectar con el servidor.", "danger");
         }
     });
+
+    // Función para mostrar mensajes dinámicos
+    function displayMessage(message, type) {
+        messageContainer.innerHTML = `
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        `;
+    }
 });

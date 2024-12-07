@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,81 +9,90 @@
     <link rel="stylesheet" href="/css/homeStyles.css">
 </head>
 <body>
-    <header class="py-3">
-        <div class="container d-flex align-items-center justify-content-between">
-            <!-- Logo -->
-            <a href="#">
-                <img src="assets/Logo Red png.png" alt="Logo de la concesionaria" class="logo"">
-            </a>
-    
-            <!-- Barra de búsqueda -->
-            <form class="form-inline mx-auto">
-                <input class="form-control mr-2" type="search" placeholder="Buscar vehículos..." aria-label="Buscar">
-                <button class="btn btn-principal" type="submit">Buscar</button>
-            </form>
-    
-            <!-- Botones -->
-            <div>
-                <a href="login.html" class="btn btn-principal mr-2">Iniciar sesión</a>
+<header class="py-3">
+    <div class="container d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <a href="#">
+            <img src="assets/Logo Red png.png" alt="Logo de la concesionaria" class="logo">
+        </a>
+
+        <!-- Barra de búsqueda -->
+        <form class="form-inline mx-auto">
+            <input class="form-control mr-2" type="search" placeholder="Buscar vehículos..." aria-label="Buscar">
+            <button class="btn btn-principal" type="submit">Buscar</button>
+        </form>
+
+        <!-- Botones -->
+        <div>
+            <div th:if="${userLoggedIn}">
+                <!-- Si el usuario está logueado -->
+                <a href="/logout" class="btn btn-principal mr-2">Cerrar sesión</a>
+                <a href="/dashboard" class="btn btn-principal mr-2">Dashboard</a>
+                <a href="#" class="btn btn-principal">Vende tu vehículo</a>
+            </div>
+            <div th:unless="${userLoggedIn}">
+                <!-- Si el usuario NO está logueado -->
+                <a href="/login" class="btn btn-principal mr-2">Iniciar sesión</a>
                 <a href="#" class="btn btn-principal">Vende tu vehículo</a>
             </div>
         </div>
+    </div>
 
-        <br>
+    <br>
 
-        <!-- Línea eliminada aquí -->
-        <!-- Opciones del menú -->
-        <nav class="py-2">
-            <div class="container d-flex justify-content-around">
-                <a href="#"><b>Usados</b></a>
-                <a href="#"><b>Nuevos</b></a>
-                <a href="#"><b>De agencia</b></a>
-                <a href="#"><b>Blog</b></a>
-            </div>
-        </nav>
-        <div class="linea"></div>
-    </header>
-    
-    
-    <!-- Últimas Publicaciones -->
-    <main class="container my-5">
-        <h2 class="text-center mb-4">Últimas Publicaciones</h2>
-        <div class="row justify-content-center">
-            <!-- Ejemplo de Card -->
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Imagen del vehículo">
-                    <div class="card-body">
-                        <h5 class="card-title">Toyota Corolla 2020</h5>
-                        <p class="card-text">
-                            Año: 2020<br>
-                            Kilometraje: 15,000 km<br>
-                            Ciudad: Colima<br>
-                            Precio: <strong>$250,000 MXN</strong><br>
-                            <span class="badge badge-success">Precio Negociable</span>
-                        </p>
-                    </div>
+    <!-- Línea eliminada aquí -->
+    <!-- Opciones del menú -->
+    <nav class="py-2">
+        <div class="container d-flex justify-content-around">
+            <a href="#"><b>Usados</b></a>
+            <a href="#"><b>Nuevos</b></a>
+            <a href="#"><b>De agencia</b></a>
+            <a href="#"><b>Blog</b></a>
+        </div>
+    </nav>
+    <div class="linea"></div>
+</header>
+
+
+<!-- Últimas Publicaciones -->
+<main class="container my-5">
+    <h2 class="text-center mb-4">Últimas Publicaciones</h2>
+    <div class="row justify-content-center">
+        <!-- Ejemplo de Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Imagen del vehículo">
+                <div class="card-body">
+                    <h5 class="card-title">Toyota Corolla 2020</h5>
+                    <p class="card-text">
+                        Año: 2020<br>
+                        Kilometraje: 15,000 km<br>
+                        Ciudad: Colima<br>
+                        Precio: <strong>$250,000 MXN</strong><br>
+                        <span class="badge badge-success">Precio Negociable</span>
+                    </p>
                 </div>
             </div>
-            <!-- Agrega más cards aquí -->
         </div>
-    </main>
+        <!-- Agrega más cards aquí -->
+    </div>
+</main>
 
-    <footer class="py-4">
-        <div class="container text-center">
-            <div class="linea mb-3"></div>
-            <p>&copy; 2024 Seminuevos Colima. Todos los derechos reservados.</p>
-            <p><a href="#">Términos y condiciones</a></p>
-            <div class="my-2">
-                <a href="#" class="mx-2">Facebook</a>
-                <a href="#" class="mx-2">Twitter</a>
-                <a href="#" class="mx-2">Instagram</a>
-            </div>
-            <p>Para consultas llámanos o escríbenos al:<br> 
-                <strong>222 653 7555</strong><br>
-                <strong>ayuda@seminuevoscolima.com</strong>
-            </p>
+<footer class="py-4">
+    <div class="container text-center">
+        <div class="linea mb-3"></div>
+        <p>&copy; 2024 Seminuevos Colima. Todos los derechos reservados.</p>
+        <p><a href="#">Términos y condiciones</a></p>
+        <div class="my-2">
+            <a href="#" class="mx-2">Facebook</a>
+            <a href="#" class="mx-2">Twitter</a>
+            <a href="#" class="mx-2">Instagram</a>
         </div>
-    </footer>
+        <p>Para consultas llámanos o escríbenos al:<br>
+            <strong>222 653 7555</strong><br>
+            <strong>ayuda@seminuevoscolima.com</strong>
+        </p>
+    </div>
+</footer>
 </body>
 </html>

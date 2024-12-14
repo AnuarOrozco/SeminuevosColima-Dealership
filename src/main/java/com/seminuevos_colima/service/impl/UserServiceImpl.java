@@ -14,20 +14,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Override
-    public User registerUser(User user) {
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new IllegalArgumentException("El email ya está registrado.");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.COMPRADOR);
-
-        return userRepository.save(user);
-    }
-
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -35,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return registerUser(user);
+        return userRepository.save(user);
     }
 
     @Override
@@ -47,7 +33,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setEmail(user.getEmail());
 
         if (!user.getPassword().equals(existingUser.getPassword())) {
-            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+            existingUser.setPassword(user.getPassword());
         }
 
         existingUser.setRole(user.getRole());

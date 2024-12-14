@@ -1,11 +1,9 @@
 package com.seminuevos_colima.service.impl;
 
-import com.seminuevos_colima.entity.Role;
 import com.seminuevos_colima.entity.User;
 import com.seminuevos_colima.repository.UserRepository;
 import com.seminuevos_colima.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
